@@ -120,7 +120,7 @@ function submit() {
       <DocumentationIcon />
     </template>
     <template #heading>
-      <a href="/">Next</a>
+      <a href="#" @click="$router.go()">Next</a>
     </template>
   </WelcomeItem>
 
