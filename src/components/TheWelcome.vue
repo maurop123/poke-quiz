@@ -12,8 +12,10 @@ const { pokemon } = PokemonList
 
 // Get random Poke
 import { getRandomInt } from '../utils.js'
-const i = getRandomInt(0, pokemon.length)
-const poke = pokemon[i]
+//filter: only tiered pokes
+const tierPokes = pokemon.filter(p => p.formats.length > 0)
+const i = getRandomInt(0, tierPokes.length)
+const poke = tierPokes[i]
 console.log('poke', poke)
 
 // Make template data
