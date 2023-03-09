@@ -19,6 +19,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/test-utils": "^2.3.0",
     "jsdom": "^21.1.0",
+    "lodash": "^4.17.21",
     "vite": "^4.1.4",
     "vitest": "^0.29.1"
   }

@@ -5,6 +5,24 @@ import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+
+// Pokemon data
+import PokemonList from '../data/pokemon.js'
+const {pokemon} = PokemonList
+
+// Get random Poke
+import { getRandomInt } from '../utils.js'
+const i = getRandomInt(0, pokemon.length)
+const poke = pokemon[i]
+console.log('poke', poke)
+
+// Make template data
+import { ref } from 'vue'
+const pokemonName = ref(poke.name)
+
+//Get pokemon image url
+const pokeNameForUrl = poke.name.toLowerCase().replace('\'','').replace('.','').replace(' ','-')
+const pokemonImageUrl = ref(`https://www.smogon.com/dex/media/sprites/bw/${pokeNameForUrl}.gif`)
 </script>
 
 <template>
@@ -23,11 +41,12 @@ import SupportIcon from './icons/IconSupport.vue'
   <WelcomeItem>
     <!-- Pokemon Image -->
     <template #icon>
-      <ToolingIcon />
+      <img :src="pokemonImageUrl" />
+      <!--<ToolingIcon />-->
     </template>
 
     <!-- Pokemon Name -->
-    <template #heading>Tooling</template>
+    <template #heading>{{ pokemonName }}</template>
 
     <!-- Question -->
     This project is served and bundled with
