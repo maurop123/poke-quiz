@@ -16,26 +16,22 @@ import { getRandomInt } from '../utils.js'
 const tierPokes = pokemon.filter(p => p.formats.length > 0)
 const i = getRandomInt(0, tierPokes.length)
 const poke = tierPokes[i]
-console.log('poke', poke)
-
-// Make template data
-import { ref } from 'vue'
-const pokemonName = ref(poke.name)
+/* console.log('poke', poke) */
 
 //Get pokemon image url
 const pokeNameForUrl = poke.name.toLowerCase().replace('\'','').replace('.','').replace(' ','-')
-const pokemonImageUrl = ref(`https://www.smogon.com/dex/media/sprites/bw/${pokeNameForUrl}.gif`)
+const pokemonImageUrl = `https://www.smogon.com/dex/media/sprites/bw/${pokeNameForUrl}.gif`
 
 //Get pokemon's types
-const pokemonTypes = poke.types.join(',')
+const pokemonTypes = poke.types.join(', ')
 
 // Get Types
 import TypeList from '../data/types.js'
 const { types } = TypeList
-const typeNames = ref( types.map(t => t.name) )
-console.log('types', types)
+const typeNames = types.map(t => t.name)
 
 // v-model type selects
+import { ref } from 'vue'
 const type1 = ref()
 const type2 = ref()
 
@@ -45,13 +41,12 @@ const revealAnswer = ref(false)
 // Handle submission
 const answerCorrect = ref(false)
 function submit() {
-  console.log('submit')
 
   // Check answer
   const pass = ( poke.types.length > 1 )
-        ? ( poke.types.indexOf(type1) > -1
-            && poke.types.indexOf(type2) > -1 )
-        : ( poke.types.indexOf(type1) > -1 )
+        ? ( poke.types.indexOf(type1.value) > -1
+            && poke.types.indexOf(type2.value) > -1 )
+        : ( poke.types.indexOf(type1.value) > -1 )
 
   if (pass) answerCorrect.value = true
   revealAnswer.value = true
@@ -68,10 +63,10 @@ function submit() {
     </template>
 
     <!-- Name -->
-    <template #heading>{{ pokemonName }}</template>
+    <template #heading>{{ poke.name }}</template>
 
     <!-- Question -->
-    Which type(s) is {{ pokemonName }}?
+    Which type(s) is {{ poke.name }}?
   </WelcomeItem>
 
 <!-- Type(s) Selector -->
