@@ -8,7 +8,7 @@ import SupportIcon from './icons/IconSupport.vue'
 
 // Pokemon data
 import PokemonList from '../data/pokemon.js'
-const {pokemon} = PokemonList
+const { pokemon } = PokemonList
 
 // Get random Poke
 import { getRandomInt } from '../utils.js'
@@ -23,95 +23,108 @@ const pokemonName = ref(poke.name)
 //Get pokemon image url
 const pokeNameForUrl = poke.name.toLowerCase().replace('\'','').replace('.','').replace(' ','-')
 const pokemonImageUrl = ref(`https://www.smogon.com/dex/media/sprites/bw/${pokeNameForUrl}.gif`)
+
+//Get pokemon's types
+const pokemonTypes = poke.types.join(',')
+
+// Get Types
+import TypeList from '../data/types.js'
+const { types } = TypeList
+const typeNames = ref( types.map(t => t.name) )
+console.log('types', types)
+
+// v-model type selects
+const type1 = ref()
+const type2 = ref()
+
+// Hide answer
+const revealAnswer = ref(false)
+
+// Handle submission
+const answerCorrect = ref(false)
+function submit() {
+  console.log('submit')
+
+  // Check answer
+  const pass = ( poke.types.length > 1 )
+        ? ( poke.types.indexOf(type1) > -1
+            && poke.types.indexOf(type2) > -1 )
+        : ( poke.types.indexOf(type1) > -1 )
+
+  if (pass) answerCorrect.value = true
+  revealAnswer.value = true
+}
+
 </script>
 
 <template>
+<!-- Pokemon -->
   <WelcomeItem>
-    <!-- Game Intro -->
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Documentation</template>
-
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <!-- Pokemon Image -->
+    <!-- Image -->
     <template #icon>
       <img :src="pokemonImageUrl" />
-      <!--<ToolingIcon />-->
     </template>
 
-    <!-- Pokemon Name -->
+    <!-- Name -->
     <template #heading>{{ pokemonName }}</template>
 
     <!-- Question -->
-    This project is served and bundled with
-    <a href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank" rel="noopener">Volar</a>. If
-    you need to test your components and web pages, check out
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a> and
-    <a href="https://on.cypress.io/component" target="_blank">Cypress Component Testing</a>.
-
-    <br />
-
-    More instructions are available in <code>README.md</code>.
+    Which type(s) is {{ pokemonName }}?
   </WelcomeItem>
 
+<!-- Type(s) Selector -->
   <WelcomeItem>
-    <!-- Type(s) Selector -->
-
     <template #icon>
       <EcosystemIcon />
     </template>
 
     <!-- Dropdowns -->
-    <template #heading>Ecosystem</template>
-
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener">Vue Test Utils</a>, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener">Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
-    a visit.
+    <div>
+        <label>Type 1</label>
+        <br />
+        <select v-model="type1">
+            <option v-for="name in typeNames">{{ name }}</option>
+        </select>
+    </div>
+    <div>
+        <label>Type 2</label>
+        <br />
+        <select v-model="type2">
+            <option v-for="name in typeNames">{{ name }}</option>
+        </select>
+    </div>
   </WelcomeItem>
 
-  <WelcomeItem>
-    <!-- Submit -->
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
-
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>, our official
-    Discord server, or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also subscribe to
-    <a href="https://news.vuejs.org" target="_blank" rel="noopener">our mailing list</a> and follow
-    the official
-    <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    twitter account for latest news in the Vue world.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <!-- (Hidden) Answer -->
-    <!-- reveal after submit -->
+<!-- (Hidden) Answer -->
+<!-- reveal after submit -->
+  <WelcomeItem v-show="revealAnswer">
     <template #icon>
       <SupportIcon />
     </template>
-    <template #heading>Support Vue</template>
+    <template #heading v-if="answerCorrect">Correct!</template>
+    <template #heading v-else>Wrong!</template>
 
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
+    <p>Answer: {{ pokemonTypes }}</p>
   </WelcomeItem>
+
+<!-- Submit -->
+  <WelcomeItem v-show="!revealAnswer">
+    <template #icon>
+      <CommunityIcon />
+    </template>
+    <template #heading>
+        <button @click="submit">Submit</button>
+    </template>
+  </WelcomeItem>
+
+<!-- Next -->
+  <WelcomeItem v-show="revealAnswer">
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <template #heading>
+      <a href="/">Next</a>
+    </template>
+  </WelcomeItem>
+
 </template>
