@@ -7,8 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "test:e2e": "playwright test",
-    "pre-push": "npm run build && git commit --amend --no-edit"
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "pinia": "^2.0.32",
