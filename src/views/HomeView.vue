@@ -1,9 +1,9 @@
 <script setup>
-import RightSideComponent from '../components/RightSideComponent.vue'
+import PokemonTypesGame from '../components/PokemonTypesGame.vue'
 </script>
 
 <template>
   <main>
-    <RightSideComponent />
+    <PokemonTypesGame />
   </main>
 </template>

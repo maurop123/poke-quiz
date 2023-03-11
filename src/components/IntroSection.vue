@@ -11,7 +11,7 @@ defineProps({
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
-      Guess the following pokemon's type.
+      Training for PokeMMO PVP
     </h3>
   </div>
 </template>

@@ -5,7 +5,7 @@ export default {
         "atk_effectives": [
           [
             "Bug",
-            1
+            1,
           ],
           [
             "Dark",

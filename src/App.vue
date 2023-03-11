@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import LeftSideTitle from './components/LeftSideTitle.vue'
+import IntroSection from './components/IntroSection.vue'
 </script>
 
 <template>
@@ -8,11 +8,11 @@ import LeftSideTitle from './components/LeftSideTitle.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <LeftSideTitle msg="Poké Quiz" />
+      <IntroSection msg="Poké Quiz" />
 
       <nav>
-        <RouterLink to="/">Types</RouterLink>
-        <RouterLink to="/about">Super Effective</RouterLink>
+        <RouterLink to="/">Pokémon Types Quiz</RouterLink>
+        <RouterLink to="/super-effective">Super Effective Test</RouterLink>
       </nav>
     </div>
   </header>
