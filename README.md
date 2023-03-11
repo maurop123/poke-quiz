@@ -1,21 +1,10 @@
 # poke-quiz
 
-This template should help get you started developing with Vue 3 in Vite.
+An app for PokeMMO training. Learn your types!
 
-## Project Setup
+## Run locally
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
 ```
