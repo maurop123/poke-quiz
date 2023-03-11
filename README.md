@@ -1,6 +1,6 @@
 # poke-quiz
 
-An app for PokeMMO training. Learn your types!
+Training for PokeMMO PVP. Learn your types!
 
 ## Run locally
 
