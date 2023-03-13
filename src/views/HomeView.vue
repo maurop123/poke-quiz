@@ -1,9 +1,10 @@
 <script setup>
-import PokemonTypesGame from '../components/PokemonTypesGame.vue'
+  import SuperEffectiveGame from '../components/SuperEffectiveGame.vue'
+  import PokemonTypesGame from '../components/PokemonTypesGame.vue'
 </script>
 
 <template>
   <main>
-    <PokemonTypesGame />
+    <SuperEffectiveGame />
   </main>
 </template>

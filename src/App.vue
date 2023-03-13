@@ -8,11 +8,11 @@ import IntroSection from './components/IntroSection.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <IntroSection msg="Poké Quiz" />
+      <IntroSection msg="PokeMMO Training" />
 
       <nav>
-        <RouterLink to="/">Pokémon Types Quiz</RouterLink>
-        <RouterLink to="/super-effective">Super Effective Test</RouterLink>
+        <!-- <RouterLink to="/">Pokémon Types Quiz</RouterLink> -->
+        <!-- <RouterLink to="/super-effective">Super Effective Test</RouterLink> -->
       </nav>
     </div>
   </header>
