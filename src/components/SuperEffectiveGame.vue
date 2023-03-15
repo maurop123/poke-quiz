@@ -24,7 +24,7 @@
   const choices = [
     { option: 'super effective', text: 'is super effective against', atk_effective: 2 },
     { option: 'not very effective', text: 'is not very effective against', atk_effective: 0.5 },
-    { option: 'has not effect', text: 'has no effect on', atk_effective: 0 },
+    { option: 'has no effect', text: 'has no effect on', atk_effective: 0 },
   ]
 
   // Correct Choice 
@@ -54,9 +54,26 @@
   const randPokeForGif = getRandomItem(rightTypePokes)
   const pokeNameForUrl = randPokeForGif.name.toLowerCase().replace('\'','').replace('.','').replace(' ','-')
   const pokemonGifUrl = `https://www.smogon.com/dex/media/sprites/bw/${pokeNameForUrl}.gif`
+
+  // Add Question Count 
+  const count = ref(0)
+  count.value = JSON.parse( sessionStorage.getItem('poke_quiz_se_count') )
+  count.value += 1
+  sessionStorage.setItem('poke_quiz_se_count', JSON.stringify(count.value) )
+
+  // Next function
+  import router from '../router'
+  function next() {
+    router.go()
+  }
 </script>
 
 <template>
+  <!-- Count -->
+  <WelcomeItem>
+    <p>Question {{ count }}:</p>
+  </WelcomeItem>
+
   <WelcomeItem> 
     <!-- Image -->
     <template #icon>
@@ -102,7 +119,7 @@
       <DocumentationIcon />
     </template>
     <template #heading>
-      <a href="#" @click="$router.go()">Next</a>
+      <a href="#" @click="next">Next</a>
     </template>
   </WelcomeItem>
 </template>
