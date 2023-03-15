@@ -10,10 +10,10 @@ import IntroSection from './components/IntroSection.vue'
     <div class="wrapper">
       <IntroSection msg="PokeMMO Training" />
 
-      <nav>
+      <!--nav>
         <RouterLink to="/">Pokémon Types Quiz</RouterLink>
         <RouterLink to="/super-effective">Super Effective Test</RouterLink>
-      </nav>
+      </nav-->
     </div>
   </header>
 
