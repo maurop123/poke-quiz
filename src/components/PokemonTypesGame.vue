@@ -16,7 +16,7 @@
   const tierPokes = pokemon.filter(p => p.formats.length > 0)
   const i = getRandomInt(0, tierPokes.length)
   const poke = tierPokes[i]
-  /* console.log('poke', poke) */
+  console.log('poke', poke)
 
   //Get pokemon image url
   const pokeNameForUrl = poke.name.toLowerCase().replace('\'','').replace('.','').replace(' ','-')
@@ -62,14 +62,31 @@
     </template>
 
     <!-- Name -->
-    <template #heading>{{ poke.name }}</template>
+    <template #heading v-if="!revealAnswer">{{ poke.name }}</template>
+    <template #heading v-else-if="answerCorrect">Correct!</template>
+    <template #heading v-else>Wrong!</template>
 
-    <!-- Question -->
-    Which type(s) is {{ poke.name }}?
+    <template v-if="!revealAnswer">
+      <!-- Question -->
+      Which type(s) is {{ poke.name }}?
+    </template>
+    <template v-else>
+      Name: {{ poke.name }}
+      <br>
+      Type: {{ pokemonTypes }}
+      <br>
+      Dex No. {{ poke.oob.dex_number }}
+      <br>
+      Tiers: {{ poke.formats.join(', ') }}
+      <br>
+      Abilities: {{ poke.abilities.join(', ') }}
+      <br>
+      Gens: {{ poke.oob.genfamily.join(', ') }}
+    </template>
   </WelcomeItem>
 
   <!-- Type(s) Selector -->
-  <WelcomeItem>
+  <WelcomeItem v-show="!revealAnswer">
     <template #icon>
       <EcosystemIcon />
     </template>
@@ -89,18 +106,6 @@
             <option v-for="name in typeNames">{{ name }}</option>
         </select>
     </div>
-  </WelcomeItem>
-
-  <!-- (Hidden) Answer -->
-  <!-- reveal after submit -->
-  <WelcomeItem v-show="revealAnswer">
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading v-if="answerCorrect">Correct!</template>
-    <template #heading v-else>Wrong!</template>
-
-    <p>Answer: {{ pokemonTypes }}</p>
   </WelcomeItem>
 
   <!-- Submit -->
