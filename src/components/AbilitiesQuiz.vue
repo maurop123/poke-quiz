@@ -1,5 +1,8 @@
 <script>
   import WelcomeItem from './WelcomeItem.vue'
+
+  import abilities from '../data/abilities.js'
+  console.log('abilities', abilities)
 </script>
 
 <template>
