@@ -13,6 +13,7 @@ import IntroSection from './components/IntroSection.vue'
       <nav>
         <RouterLink to="/">Type VS Quiz</RouterLink>
         <RouterLink to="/tab2">Mon Type Quiz</RouterLink>
+        <RouterLink to="/tab3">Abilities Quiz</RouterLink>
       </nav>
     </div>
   </header>
