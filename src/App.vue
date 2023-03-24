@@ -40,8 +40,12 @@ nav {
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
+nav a {
   color: var(--color-text);
+}
+
+nav a.router-link-exact-active {
+  color: hsla(160, 100%, 37%, 1); /* copied from main.css */
 }
 
 nav a.router-link-exact-active:hover {
